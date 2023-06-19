@@ -16,7 +16,7 @@ const checkPalindrom = (string) => {
 
 // 3. возврат целого положительного
 
-function returnNumber(number) {
+const returnNumber = (number) => {
   const string = number.toString();
   let result = '';
   for (let i = 0; i < string.length; i++) {
@@ -25,7 +25,7 @@ function returnNumber(number) {
     }
   }
   return parseInt(result, 10);
-}
+};
 
 /* eslint-disable no-console*/
 
