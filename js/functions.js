@@ -27,6 +27,23 @@ const returnNumber = (number) => {
   return parseInt(result, 10);
 };
 
+// 4. функция возвращает true - встреча не выходит за рамки рабочего дня, false - если выходит
+
+const isMeetingWithinWorkingHours = (startTime, endTime, meetingStart, meetingDuration) => {
+  const [startHours, startMinutes] = startTime.split(':').map(Number);
+  const startInMinutes = startHours * 60 + startMinutes;
+
+  const [endHours, endMinutes] = endTime.split(':').map(Number);
+  const endInMinutes = endHours * 60 + endMinutes;
+
+  const [meetingStartHours, meetingStartMinutes] = meetingStart.split(':').map(Number);
+  const meetingStartInMinutes = meetingStartHours * 60 + meetingStartMinutes;
+
+  const meetingEndInMinutes = meetingStartInMinutes + meetingDuration;
+
+  return meetingStartInMinutes >= startInMinutes && meetingEndInMinutes <= endInMinutes;
+};
+
 /* eslint-disable no-console*/
 
 console.log(checkLengthLimit('проверяемая строка', 20));
@@ -46,3 +63,9 @@ console.log(returnNumber('а я томат'));
 console.log(returnNumber(2023));
 console.log(returnNumber(-1));
 console.log(returnNumber(1.5));
+
+console.log(isMeetingWithinWorkingHours('08:00', '17:30', '14:00', 90));
+console.log(isMeetingWithinWorkingHours('8:0', '10:0', '8:0', 120));
+console.log(isMeetingWithinWorkingHours('08:00', '14:30', '14:00', 90));
+console.log(isMeetingWithinWorkingHours('14:00', '17:30', '08:0', 90));
+console.log(isMeetingWithinWorkingHours('8:00', '17:30', '08:00', 900));

@@ -1,6 +1,6 @@
 // модуль создающий данные
 
-import { createIdGenerator, getRandomInteger, getRandomArrayElement } from './util.js';
+import { createIdGenerator, getRandomInteger, getRandomItem } from './util.js';
 
 const NAMES = [
   'Риолу',
@@ -53,8 +53,8 @@ const generateCommentId = createIdGenerator();
 const createComment = () => ({
   id: generateCommentId(),
   avatar: `img/avatar-${getRandomInteger(AvatarAmount.MIN, AvatarAmount.MAX)}.svg`,
-  message: getRandomArrayElement(COMMENTS),
-  name: getRandomArrayElement(NAMES),
+  message: getRandomItem(COMMENTS),
+  name: getRandomItem(NAMES),
 });
 
 const createComments = (length) => Array.from({ length }, createComment);
